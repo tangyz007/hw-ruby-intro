@@ -77,19 +77,19 @@ class BookInStock
 # YOUR CODE HERE
   attr_reader :isbn, :price #creates getters
   
-  def initialize(isbn_i,price_i)
+  def initialize(isbn_i,price_i) #constructor
     self.isbn=(isbn_i)
     self.price=(price_i)
   end
   
-  #setters
+  #setter
   def isbn=(isbn_i)
-    if !(isbn_i.is_a? String) #check if string
-      raise ArgumentError
-    elsif isbn_i.length < 1 #check if not empty
-      raise ArgumentError
+    if !(isbn_i.is_a? String)
+      raise ArgumentError.new('Not a String!!!')
+    elsif isbn_i.length < 1 
+      raise ArgumentError.new('ISBN is empty!!!')
     else
-      @isbn = isbn_i #set
+      @isbn = isbn_i 
     end
   end
   
@@ -104,7 +104,7 @@ class BookInStock
   end
   
   def price_as_string
-    "$#{@price.round(2)}"
+    "$#{@price.round(2)}" #round to 2 digits
   	sprintf("$%#.2f", @price)
   end
 end
